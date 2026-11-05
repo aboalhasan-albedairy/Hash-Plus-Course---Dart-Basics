@@ -1,69 +1,85 @@
-// welcome to Hash Plus - Dart Edition
-
+// Task 1 - Ticket Booking System
 import 'dart:io';
 
 void main() {
-  // data storgae
-  const String userName = "Hash-Plus-Hopper";
-  const String passWord = "IHash#-Plus+6432";
-  // inputs
-  String? inputUserName;
-  String? inputPassWord;
-  int? inputChoosingRoadmap;
+  // variables
+  String ticketType;
+  int ticketPrice;
+  int quantity;
+  int totalPrice;
+  String gift;
+  // inputs variables
+  String? inputName;
+  int? inputAge;
+  int? inputChooseTicketType;
+  int? inputQuantity;
 
-  // welcome messege
-  print("Hash Plus - Dart Edition");
-  print("\n=======================\n");
-  print("<<<< Login >>>>");
-  stdout.write("Enter Username: ");
-  inputUserName = stdin.readLineSync();
-  stdout.write("Enter Password: ");
-  inputPassWord = stdin.readLineSync();
-  print("===================================================================");
+  // login
+  print("<<<< Login to Ticket Booking >>>>");
+  // enter name
+  stdout.write("Enter Your Name: ");
+  inputName = stdin.readLineSync();
+  // enter age
+  stdout.write("Enter Your Age: ");
+  inputAge = int.parse(stdin.readLineSync()!);
+  print("=========================================");
 
-  // login condition
-  if (inputUserName == userName && inputPassWord == passWord) {
-    // choosing Roadmap
-    print("<<<<< Welcome to HashPlus Dart Edition >>>>\n");
-    print("""the Roadmaps that avaliable
-1 - Web Development
-2 - Mobile Application Development
-3 - UI UX Design
-4 - AI Tools
-5 - Cyper securty
-6 - Networking
-7 - Data Analysis""");
-    print("==================================================================");
-    stdout.write("please choose your Roadmap: ");
-    inputChoosingRoadmap = int.parse(stdin.readLineSync()!);
+  // login age check
+  if (inputAge < 15) {
+    print("Sorry, this movie is for ages 15 and above.");
+  } else {
+    // Ticket Booking system
+    print("Welcome to Cinema Ticket Booking");
 
-    print("==================================================================");
-    switch (inputChoosingRoadmap) {
+    // Choose ticket
+    print("""please Choose your Ticket's Type:
+1 - Standard
+2 - VIP
+3 - IMAX
+""");
+    // enter your ticket type
+    stdout.write("Choose Ticket Type: ");
+    inputChooseTicketType = int.parse(stdin.readLineSync()!);
+
+    // conditions
+    switch (inputChooseTicketType) {
       case 1:
-        print("Welcome to Web Development Roadmap");
+        ticketType = "Standard";
+        ticketPrice = 40;
         break;
       case 2:
-        print("Welcome to Mobile Application Development Roadmap");
+        ticketType = "VIP";
+        ticketPrice = 75;
         break;
       case 3:
-        print("Welcome to UI UX Design Roadmap");
-        break;
-      case 4:
-        print("Welcome to AI Tools Roadmap");
-        break;
-      case 5:
-        print("Welcome to Cyper Securty Roadmap");
-        break;
-      case 6:
-        print("Welcome to Networking Roadmap");
-        break;
-      case 7:
-        print("Welcome to Data Analysis Roadmap");
+        ticketType = "IMAX";
+        ticketPrice = 60;
         break;
       default:
-        print("Error: Invailed Value");
+        print("Invalid Ticket Type!");
+        return;
     }
-  } else {
-    print("Login Failed!");
+
+    // enter quantity
+    stdout.write("Enter Ticket Quantity: ");
+    inputQuantity = int.parse(stdin.readLineSync()!);
+    quantity = inputQuantity;
+
+    // total price
+    totalPrice = ticketPrice * quantity;
+
+    // gift
+    gift = (totalPrice >= 200) ? "Free Popcorn" : "No Free Popcorn";
+
+    // output
+    print("""
+========== Cinema Ticket ==========
+Name: $inputName
+Ticket Type: $ticketType
+Quantity: $quantity
+Total Price: $totalPrice
+Gift: $gift
+===================================
+""");
   }
 }
